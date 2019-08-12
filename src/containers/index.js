@@ -3,19 +3,30 @@ import { Provider } from "react-redux";
 import Dashboard from './Dashboard';
 
 import configureStore from "../store";
+import { runSaga } from '../sagas/rootSaga';
 
 import RootWrapper from "../components/RootWrapper";
 
 // Configure the store instance
 const store = configureStore();
 
-const App = () => (
-  <RootWrapper>
-    <Provider store={store}>
-      <Dashboard />
-    </Provider>
-  </RootWrapper>
-);
+class App extends React.Component {
+  constructor() {
+    super();
+
+    runSaga();
+  }
+
+  render () {
+    return (
+      <RootWrapper>
+        <Provider store={store}>
+          <Dashboard />
+        </Provider>
+      </RootWrapper>
+    );
+  }
+} 
 
 App.propTypes = {};
 
