@@ -1,7 +1,9 @@
+import { fork } from 'redux-saga/effects';
 import { sagaMiddleware } from "../store";
+import tickerSaga from './tickerSaga';
 
 function* rootSaga() {
-  yield console.log('Root saga started');
+  yield fork(tickerSaga);
 }
 
 export const runSaga = () =>
