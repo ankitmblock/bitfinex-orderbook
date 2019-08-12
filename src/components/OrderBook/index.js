@@ -8,7 +8,7 @@ const OrderBookWrapper = styled.header`
   justify-content: flex-end;
 `;
 
-const OrderBook = ({ tradingPair }) => (
+const OrderBook = ({ tradingPair, bids, asks }) => (
   <OrderBookWrapper>
     <div>{`OrderBook-${tradingPair}`}</div>
   </OrderBookWrapper>
