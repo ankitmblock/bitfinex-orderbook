@@ -71,12 +71,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 
 const mapStateToProps = (state) => {
   return {
-    bids: state.orderBook.bids.sort((a, b) => {
-        return a.price >= b.price ? -1 : 1
-    }),
-    asks: state.orderBook.asks.sort((a, b) => {
-      return a.price <= b.price ? -1 : 1
-    }),
+    bids: state.orderBook.bids.sort((a, b) => a.price >= b.price ? -1 : 1),
+    asks: state.orderBook.asks.sort((a, b) => a.price <= b.price ? -1 : 1),
     tickerData : state.ticker.data,
   };
 }

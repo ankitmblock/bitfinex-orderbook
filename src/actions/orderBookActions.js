@@ -18,16 +18,16 @@ export const addOrUpdateAsk = priceData => ({
   },
 });
 
-export const deleteBid = price => ({
+export const deleteBid = priceData => ({
   type: DELETE_BID,
   data: {
-    price,
+    ...priceData,
   },
 });
 
-export const deleteAsk = price => ({
+export const deleteAsk = priceData => ({
   type: DELETE_ASK,
   data: {
-    price,
+    ...priceData,
   },
 });
