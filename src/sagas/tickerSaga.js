@@ -1,8 +1,18 @@
-import { takeEvery, fork } from 'redux-saga/effects';
-import { ON_TICKER_MSG } from '../actions/tickerActions';
+import { takeEvery, fork, put } from 'redux-saga/effects';
+import { ON_TICKER_MSG, saveTickerData } from '../actions/tickerActions';
+import { tickerMessageParser } from '../utils/parsers';
 
-function* onTickerMessage(action) {
-  yield console.log('onTickerMessage', action);
+function* onTickerMessage({ message }) {
+  const parsedMessage = JSON.parse(message);
+  
+  if (!parsedMessage.event) {
+    const [id, data] = parsedMessage;
+    if (Array.isArray(data)) {
+      const tickerData = tickerMessageParser(data);
+
+      yield put(saveTickerData(tickerData));
+    }
+  }
 }
 
 function* watchTickerMessage() {
