@@ -10,7 +10,7 @@ export class TickerClient extends BaseClient {
   };
 
   onMessage = message => {
-    console.log('Ticker Client :', message);
+    this.config.onMessage(message.data)
   };
 }
 
