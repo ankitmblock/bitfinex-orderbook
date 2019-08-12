@@ -37,7 +37,7 @@ class Dashboard extends React.Component {
   }
 
   render () {
-    const { tradingPair, asks, bids } = this.props;
+    const { tradingPair, asks, bids, tickerData } = this.props;
     return (
       <DashboardWrapper>
         <h1>Dashboard</h1>
@@ -46,7 +46,7 @@ class Dashboard extends React.Component {
           bids={bids} 
           asks={asks}
         />
-        <Ticker tradingPair={tradingPair}/>
+        <Ticker data={tickerData} tradingPair={tradingPair}/>
         <Trades tradingPair={tradingPair}/>
       </DashboardWrapper>
     );
@@ -58,6 +58,7 @@ Dashboard.propTypes = {
   onTickerMessage: PropTypes.func.isRequired,
   bids: PropTypes.array.isRequired,
   asks: PropTypes.array.isRequired,
+  tickerData: PropTypes.object,
 };
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -69,7 +70,6 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch);
 
 const mapStateToProps = (state) => {
-  console.log('State:  ', state);
   return {
     bids: state.orderBook.bids.sort((a, b) => {
         return a.price >= b.price ? -1 : 1
@@ -77,6 +77,7 @@ const mapStateToProps = (state) => {
     asks: state.orderBook.asks.sort((a, b) => {
       return a.price <= b.price ? -1 : 1
     }),
+    tickerData : state.ticker.data,
   };
 }
 
