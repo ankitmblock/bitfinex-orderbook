@@ -11,6 +11,7 @@ const OrderBookWrapper = styled.header`
   max-height: 60%;
   overflow-y: auto;
   width: 60%;
+  margin: 4px;
 `;
 
 const OrderBook = ({ tradingPair, bids, asks }) => (

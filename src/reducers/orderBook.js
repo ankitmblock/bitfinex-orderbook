@@ -11,8 +11,6 @@ const initialState = {
 };
 
 const orderBookReducer = (state = initialState, action) => {
-  console.log('Test data12:   ', action);
-
   switch(action.type) {
     case ADD_OR_UPDATE_BID: {
       const findMatchingBid = state.bids.find(a => a.price === action.data.price);
@@ -55,8 +53,6 @@ const orderBookReducer = (state = initialState, action) => {
       }
     }
     case DELETE_BID: {
-      console.log('DELETE_BID-----------------------      :            ', action.data.price);
-
       const filteredBids = state.bids.filter(a => a.price !== action.data.price);
       return {
         ...state,
@@ -64,7 +60,6 @@ const orderBookReducer = (state = initialState, action) => {
       };
     }
     case DELETE_ASK: {
-      console.log('DELETE_ASK-----------------------      :            ', action.data.price);
       const filteredAsks = state.asks.filter(a => a.price !== action.data.price);
       return {
         ...state,

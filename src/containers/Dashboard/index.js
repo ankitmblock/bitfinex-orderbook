@@ -18,8 +18,8 @@ import {
 
 const DashboardWrapper = styled.header`
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  align-items: flex-start;
   justify-content: center;
 `;
 
@@ -40,14 +40,13 @@ class Dashboard extends React.Component {
     const { tradingPair, asks, bids, tickerData } = this.props;
     return (
       <DashboardWrapper>
-        <h1>Dashboard</h1>
+        <Ticker data={tickerData} tradingPair={tradingPair}/>
         <OrderBook 
           tradingPair={tradingPair} 
           bids={bids} 
           asks={asks}
         />
-        <Ticker data={tickerData} tradingPair={tradingPair}/>
-        <Trades tradingPair={tradingPair}/>
+        {/* <Trades tradingPair={tradingPair}/> */}
       </DashboardWrapper>
     );
   }
